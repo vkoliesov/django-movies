@@ -12,11 +12,21 @@ class ActorAndDirectorNestedSerializer(serializers.ModelSerializer):
         fields = ("id", "name")
 
 
+class ActorNestedSerializer(serializers.ModelSerializer):
+
+    actor = ActorAndDirectorNestedSerializer(read_only=True)
+
+    class Meta:
+        model = FilmActor
+        fields = ("id", "actor",)
+
+
 class FilmSerializer(serializers.ModelSerializer):
     """Film model serializer."""
 
     director = ActorAndDirectorNestedSerializer(read_only=True)
     director_id = serializers.IntegerField(write_only=True, required=False)
+    actors = ActorNestedSerializer(source="film_actors", many=True, read_only=True)
 
     class Meta:
         model = Film
