@@ -1,0 +1,41 @@
+version: "3.8"
+
+volumes:
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
+
+networks:
+  bond_ua_main:
+    driver: bridge
+
+services:
+  django: &django
+    networks:
+      - bond_ua_main
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: bond_ua_local_django
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    command: ["/bin/sh", "/app/scripts/run-local.sh"]
+
+  postgres:
+    networks:
+      - bond_ua_main
+    restart: always
+    image: postgres:11.3
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
+    env_file:
+      - .env
+    ports:
+      - "0.0.0.0:5432:5432"
