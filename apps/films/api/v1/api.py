@@ -18,7 +18,6 @@ class FilmViewSet(viewsets.ModelViewSet):
         )
     )
     serializer_class = FilmSerializer
-    # filterset_fields = ("title", "release_year", "director__name", "film_actors")
     filterset_class = FilmFilterSet
 
 

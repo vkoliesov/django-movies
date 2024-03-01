@@ -8,4 +8,6 @@ Also you should register on `https://www.omdbapi.com/` and create value `OMDb_AP
 
 Go to `http://localhost:8000/docs` to view Swagger API documentation
 
-To populate database with some movie from OMDb Enter ```python manage.py populate_db```
+## Populate DB
+To populate database with some movie from OMDb Enter: 
+`docker exec -it [name of django container]-1 sh` to go to the docker container and  `python manage.py populate_db` to populate db
