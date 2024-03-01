@@ -63,8 +63,8 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Run for Ukraine API docs",
-    "DESCRIPTION": 'Run for Ukraine API documentation"',
+    "TITLE": "Movies Library API docs",
+    "DESCRIPTION": 'Movies Library API documentation"',
     "VERSION": "v1",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_SETTINGS": {
